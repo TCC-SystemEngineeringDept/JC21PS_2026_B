@@ -15,9 +15,8 @@ public class ClubInfoRegisterRepository {
 
     // 初期画面表示
     public ClubInfoRegisterEntity getClubInfo(ClubInfoRegisterEntity paramEntity) {
-        /*
-         * TODO ➊ 初期表示情報を取得するSQLを完成させる。
-         */
+        //TODO ➊ 初期表示情報を取得するSQLを完成させる。
+        
         String sql = """
                 SELECT
                 club_name,
@@ -40,9 +39,7 @@ public class ClubInfoRegisterRepository {
 
     // 活動説明更新
     public void updateClubInfo(ClubInfoRegisterEntity paramEntity) {
-        /*
-         * TODO ➋ 部署情報をUPDATEするSQLを完成させる。
-         */
+        //TODO ➋ 部署情報をUPDATEするSQLを完成させる。
         String sql = """
                 UPDATE
                 mst_club

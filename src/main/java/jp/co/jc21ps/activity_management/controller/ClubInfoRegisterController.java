@@ -84,10 +84,13 @@ public class ClubInfoRegisterController {
         SessionDto sessionDto = commonService.getSessionDto(session);
         String leaderClubId = sessionDto.getClubId();
 
-        // バリデーション
-        /*
-         * TODO ➊ バリデーションエラーの際の処理を完成させる。
-         */
+        //TODO ➊ バリデーションエラーの際の処理を完成させる。
+        if (bindingResult.hasErrors()) {
+            mav.addObject("clubInfoRegisterSaveForm", paramForm);
+            mav.addObject("leaderClubId", leaderClubId);
+            mav.setViewName("clubInfoRegister");
+            return mav;
+    }
 
         // セッションが切れた場合、エラー画面に遷移
         if (leaderClubId.isEmpty()) {
@@ -97,18 +100,23 @@ public class ClubInfoRegisterController {
 
         try {
             ClubInfoRegisterDto clubInfoRegisterDto = new ClubInfoRegisterDto();
-            /*
-             * TODO ➋ updateClubInfoメソッドの引数に使用しているclubInfoRegisterDtoに、パラメータを設定する。
-             */
+            // TODO ➋ updateClubInfoメソッドの引数に使用しているclubInfoRegisterDtoに、パラメータを設定する。
+            clubInfoRegisterDto.setLeaderClubId(leaderClubId);
+            clubInfoRegisterDto.setClubDescription(paramForm.getClubDescription());
 
             String result = clubInfoRegisterService.updateClubInfo(clubInfoRegisterDto);
 
             // messages.propertiesからメッセージを取得
             String resultMessage = messageSource.getMessage(result, null, Locale.getDefault());
 
-            /*
-             * TODO ➌ resultの取得結果に応じて、遷移先を変更する。
-             */
+            //TODO ➌ resultの取得結果に応じて、遷移先を変更する。
+            if ("updateClubInfo".equals(result)) {
+                mav.addObject("message", resultMessage);
+                mav.addObject("leaderClubId", leaderClubId);
+                mav.setViewName("clubInfoRegister");
+            } else {
+    mav.setViewName("error");
+}
 
         } catch (Exception e) {
             // DB接続失敗した場合、エラー画面に遷移
