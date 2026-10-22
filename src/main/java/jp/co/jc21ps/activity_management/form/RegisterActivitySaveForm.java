@@ -27,7 +27,8 @@ public class RegisterActivitySaveForm {
      * 1.空白、nullを制御
      * 2.入力値制御(ヒント : @○○(max = ○○, message = "{Size}")
      */
-
+    @NotBlank(message = "{NotBlank}")
+    @Size(max = 30, message = "{Size}")
     private String activityName;
 
     // 活動日
@@ -36,6 +37,8 @@ public class RegisterActivitySaveForm {
      * 1.空白、nullを制御 (ヒント : @○○(message = "{NotBlank}"))
      * 2.日付形式の制御(ヒント : @○○(pattern = "{DateTimeFormat}")
      */
+    @NotBlank(message = "{NotBlank}")
+    @DateTimeFormat(pattern = "yyyy-MM-dd") // 日付形式 yyyy-MM-dd
 
     private String activityDate;
 
@@ -60,6 +63,8 @@ public class RegisterActivitySaveForm {
      * 1.空白、nullを制御 (ヒント : @○○(message = "{NotBlank}"))
      * 2.入力値制御(ヒント : @○○(max = ○○, message = "{Size}")
      */
+    @NotBlank(message = "{NotBlank}")
+    @Size(max = 30, message = "{Size}")
 
     private String activityPlace;
 
@@ -68,6 +73,8 @@ public class RegisterActivitySaveForm {
      * 1.空白、nullを制御 (ヒント : @○○(message = "{NotBlank}"))
      */
     // 活動時間(自)
+     @NotBlank(message = "{NotBlank}")
+
 
     @Pattern(regexp = "^(?:[01]\\d|2[0-3]):[0-5]\\d$", message = "{Pattern.activityStartTime}") // hh:mm形式
     private String activityStartTime;
@@ -77,6 +84,7 @@ public class RegisterActivitySaveForm {
      * TODO ➎ activityEndTimeに対し、バリデーションの条件を付与する
      * 1.空白、nullを制御 (ヒント : @○○(message = "{NotBlank}"))
      */
+     @NotBlank(message = "{NotBlank}")
 
     @Pattern(regexp = "^(?:[01]\\d|2[0-3]):[0-5]\\d$", message = "{Pattern.activityEndTime}") // hh:mm形式
     private String activityEndTime;
@@ -111,6 +119,8 @@ public class RegisterActivitySaveForm {
      * 1.空白、nullを制御 (ヒント : @○○(message = "{NotBlank}"))
      * 2.入力値制御(ヒント : @○○(max = ○○, message = "{Size}")
      */
+    @NotBlank(message = "{NotBlank}")
+    @Size(max = 400, message = "{Size}")
 
     private String activityDescription;
 
@@ -121,6 +131,10 @@ public class RegisterActivitySaveForm {
      * 2.最小値制御(ヒント : @○○(value = ○, message = "{Min}")
      * 3.最大値制御(ヒント : @○○(value = ○○, message = "{Max}")
      */
+    @NotBlank(message = "{NotBlank}")
+    @Min(value = 1, message = "{Min}")
+    @Max(value = 100, message = "{Max}")
+
 
     @Pattern(regexp = "^[0-9]*$", message = "{Pattern.maxParticipant}") // 半角数字
 
